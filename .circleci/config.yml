@@ -20,10 +20,13 @@ jobs:
       - run:
           command: cd tests && python3 test_histogram.py
           name: test the histogram module
-      # - store_artifacts:
-      #     path: out/
-      #     destination: debian-build-py3_tarball.tar.gz
-  docker-job:
+      - run:
+          command: tar -zcvf histograms.tar.gz out && cp histograms.tar.gz /tmp
+      - store_artifacts:
+          path: /tmp/histograms.tar.gz
+          destination: histogram-bundle.tar.gz
+
+  docker-job-0:
     docker:
       - image: circleci/buildpack-deps:latest # the primary container, where your job's commands are run
     steps:
@@ -31,12 +34,20 @@ jobs:
       - checkout # check out the code in the project directory
       - run: docker build -t python-app . # run the `echo` command
       - run: docker run -it --rm --name my-py-app python-app 
-      - run: mkdir test && ls
-      - run: uname -a 
+
+  docker-job-0:
+    docker:
+      - image: circleci/buildpack-deps:latest # the primary container, where your job's commands are run
+    steps:
+      - setup_remote_docker # use this command fur building and running docker commands into the circle ci container
+      - checkout # check out the code in the project directory
+      - run: docker build -t python-app . # run the `echo` command
+      - run: docker run -it --rm --name my-py-app python-app 
 
 
 workflows:
   main:
     jobs:
       - test-arrays-module
-      - docker-job
+      - docker-job-0
+      - docker-job-1

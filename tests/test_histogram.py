@@ -16,7 +16,7 @@ def GenerateDataBatch(N):
     return data_batch
 
 
-path = '../out/'
+path = 'out/'
 ext = '.pdf'
 
 for plot_id in range(10):
