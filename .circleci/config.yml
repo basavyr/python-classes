@@ -27,10 +27,13 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:latest # the primary container, where your job's commands are run
     steps:
-      - setup_remote_docker
+      - setup_remote_docker # use this command fur building and running docker commands into the circle ci container
       - checkout # check out the code in the project directory
       - run: docker build -t python-app . # run the `echo` command
       - run: docker run -it --rm --name my-py-app python-app 
+      - run: mkdir test && ls
+      - run: uname -a 
+
 
 workflows:
   main:
