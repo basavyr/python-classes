@@ -1,0 +1,18 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  test-arrays-module:
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          command: cd tests && python3 test_arrays.py
+          name: test the arrays module
+
+workflows:
+  main:
+    jobs:
+      - test-arrays-module
