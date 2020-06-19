@@ -29,7 +29,7 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run: docker build -t python-app # run the `echo` command
-      - run: docker run -it --rm --name my-py-app python-app
+      - run: docker run -it --rm --name my-py-app python-app .
 
 workflows:
   main:
