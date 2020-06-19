@@ -33,7 +33,10 @@ jobs:
       - setup_remote_docker # use this command fur building and running docker commands into the circle ci container
       - checkout # check out the code in the project directory
       - run: docker build -t python-app . # run the `echo` command
-      - run: docker run -it --rm --name my-py-app python-app 
+      - run: docker run -it --rm --name my-py-app python-app >> docker_build.log
+      - store_artifacts:
+        path: docker_build.log
+        destination: docker_build.log
 
   docker-job-1:
     docker:
