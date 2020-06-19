@@ -23,8 +23,15 @@ jobs:
       # - store_artifacts:
       #     path: out/
       #     destination: debian-build-py3_tarball.tar.gz
+  docker-job:
+    docker:
+      - image: circleci/python:latest # the primary container, where your job's commands are run
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
 
 workflows:
   main:
     jobs:
       - test-arrays-module
+      - docker-job
