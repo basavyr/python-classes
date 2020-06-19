@@ -35,7 +35,7 @@ jobs:
       - run: docker build -t python-app . # run the `echo` command
       - run: docker run -it --rm --name my-py-app python-app 
 
-  docker-job-0:
+  docker-job-1:
     docker:
       - image: circleci/buildpack-deps:latest # the primary container, where your job's commands are run
     steps:
