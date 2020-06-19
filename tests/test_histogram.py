@@ -2,6 +2,7 @@ import importlib
 import numpy as np
 
 import sys
+sys.path.append('src/')
 sys.path.append('../src/')
 
 import histogram as hst
