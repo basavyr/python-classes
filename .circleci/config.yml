@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: pip3 -r packages.json
+          command: pip3 install -r packages.json
           name: installs the required py3 packages
       - run:
           command: cd tests && python3 test_arrays.py
