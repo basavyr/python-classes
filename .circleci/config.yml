@@ -18,7 +18,7 @@ jobs:
           command: cd tests && python3 test_hello.py
           name: test the hello module
       - run:
-          command: cd tests && python3 test_histogram.py
+          command: chmod 775 app.sh && ./app.sh
           name: test the histogram module
       - run:
           command: tar -zcvf histograms.tar.gz out && cp histograms.tar.gz /tmp

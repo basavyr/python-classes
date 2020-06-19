@@ -2,6 +2,10 @@ FROM python:latest
 
 WORKDIR /usr/local/app
 
+COPY packages.json ./
+
+RUN pip install --no-cache-dir -r packages.json
+
 COPY . .
 
-CMD [ "/bin/bash", "scripts/run_tests.sh"]
+CMD [ "/bin/bash", "app.sh"]

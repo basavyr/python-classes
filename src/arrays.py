@@ -1,7 +1,6 @@
 import numpy as np
 import random as rd
 
-
 class Arrays:
     def __init__(self, size, left, right):
         self.size = size
