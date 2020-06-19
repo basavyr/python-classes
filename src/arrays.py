@@ -25,3 +25,8 @@ class Arrays:
             rand_list.append(rnd_number)
         # return rand_list
         print(f'{rand_list}')
+
+    @staticmethod
+    def generateNormalArray(size, mean, std_dev):
+        data = np.random.normal(mean, std_dev, size)
+        return data

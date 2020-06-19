@@ -14,6 +14,15 @@ jobs:
       - run:
           command: cd tests && python3 test_arrays.py
           name: test the arrays module
+      - run:
+          command: cd tests && python3 test_hello.py
+          name: test the hello module
+      - run:
+          command: cd tests && python3 test_histogram.py
+          name: test the histogram module
+      # - store_artifacts:
+      #     path: out/
+      #     destination: debian-build-py3_tarball.tar.gz
 
 workflows:
   main:
