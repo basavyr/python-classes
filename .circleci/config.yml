@@ -9,6 +9,9 @@ jobs:
     steps:
       - checkout
       - run:
+          command: python install -r packages.json
+          name: installs the required py packages
+      - run:
           command: cd tests && python3 test_arrays.py
           name: test the arrays module
 
