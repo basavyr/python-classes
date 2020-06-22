@@ -4,6 +4,6 @@ sys.path.append('../src/')
 from arrays import Arrays
 
 arr = Arrays(100, 0, 100)
-arr.giveList()
+print(arr.giveArray())
 
-arr.generateArray(arr.SIZE, arr.LEFT, arr.RIGHT)
+print(arr.generateArray(arr.SIZE, arr.LEFT, arr.RIGHT))
