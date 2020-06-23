@@ -12,12 +12,6 @@ jobs:
           command: pip3 install -r packages.json
           name: installs the required py3 packages
       - run:
-          command: cd tests && python3 test_arrays.py
-          name: test the arrays module
-      - run:
-          command: cd tests && python3 test_hello.py
-          name: test the hello module
-      - run:
           command: chmod 775 app.sh && ./app.sh
           name: Test the python modules HIST | VIOLIN | ARRAY
       - run:
