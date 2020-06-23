@@ -15,10 +15,10 @@ jobs:
           command: chmod 775 app.sh && ./app.sh
           name: Test the python modules HIST | VIOLIN | ARRAY
       - run:
-          command: tar -zcvf plot-bundle.tar.gz out && cp plot-bundle.gz /tmp
+          command: tar -zcvf plot-bundle.tar.gz out && cp plot-bundle.tar.gz /tmp
           name: Create the output bundle
       - store_artifacts:
-          path: /tmp/plot-bundle.gz
+          path: /tmp/plot-bundle.tar.gz
           destination: plot-bundle.tar.gz
 
   docker-job-0:
