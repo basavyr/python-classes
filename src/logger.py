@@ -1,6 +1,7 @@
 import platform as os
 from datetime import datetime
 import uuid
+import sys
 
 
 class Logger:
@@ -22,7 +23,7 @@ class Logger:
         return uuid.uuid4()
 
     def createLogData(self, data_batch, id):
-        log_data = [str(self.now().timestamp())+'-' +
+        log_data = [str(int(self.now().timestamp()))+'-' +
                     str(id), self.u_id(), self.now()]
         data_batch.append(log_data)
 

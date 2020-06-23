@@ -12,44 +12,26 @@ import time
 sys.path.append('src/')
 sys.path.append('../src/')
 
+import data_batch
 import histogram as hst
-
-def GenerateDataBatch(N):
-    data_batch = []
-    for n_id in range(N):
-        current_data = hst.X_INT
-        data_batch.append(current_data)
-        importlib.reload(hst)
-    return data_batch
+import logger 
 
 
-path = '../out/'
+path = '../out/hists/'
+log_path='../out/logs/'
 ext = '.pdf'
 log_ext = '.log'
-log_name = path+'histogram-build-process-'+str(os.system())+log_ext
+log_name = log_path+'histogram-build-process-'+str(int(datetime.utcnow().timestamp()))+'-'+str(os.system())
+plot_name=path+'hist-'+str(int(datetime.utcnow().timestamp()))+'-'+str(os.system())
 
-OS_VERSION = os.system()
-PROC_INFO = os.uname().processor
-AARCH = os.uname().machine
-SYSTEM_INFO = os.uname().version
-PY_MAJ = sys.version_info.major
-PY_MIN = sys.version_info.minor
-PYTHON_BUILD = str(PY_MAJ)+'.'+str(PY_MIN)
+log_data=[]
+logfile=logger.Logger(log_name)
 
-log_file = open(log_name, 'w')
-total_time=0.0
-for plot_id in range(3):
-    start=time.time()
-    unique_id = uuid.uuid4().hex
-    data_batch = GenerateDataBatch(3)
-    filename = path+'hist-'+str(plot_id+1)+ext
-    label = 'data-id'+str(plot_id)
-    hst.makeHistogram(data_batch, 75, label, filename)
-    end=time.time()
-    total_time=total_time+(end-start)
-    log_info = 'PLOT_ID: '+str(plot_id+1)+'-'+str(unique_id) + ' GET_TIME: @'+str(
-        datetime.utcnow()) + ' OS: '+OS_VERSION+' AARCH: ' + AARCH + ' SYS_INFO: ' + PROC_INFO+' PY_VER: '+PYTHON_BUILD+' PROC_TIME: '+str(end-start)+'\n'
-    log_file.write(log_info)
+for id in range(50):
+    logfile.createLogData(log_data,id)
+    plot_label=log_data[id][1]
+    db = data_batch.DataBatch(4, 0, 100, 100, 0, 6, 'silent')._createDB(data_batch.DataBatch.poisson_tp)
+    my_hist=hst.Histogram(db,30,plot_name+'-'+str(id),'hist-'+str(id),plot_label)
+    my_hist._makeHistogram()
 
-log_file.close()
-print(f'All histograms have been generated. Process took {round(total_time,3)} seconds...')
+logfile.writeLogData(log_data)

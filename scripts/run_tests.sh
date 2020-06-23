@@ -1,4 +1,7 @@
 #!/bin/bash
-python3 tests/test_hello.py
-python3 tests/test_arrays.py
-python3 tests/test_histogram.py
+echo "Running ARRAY test..."
+python3 ../tests/test_arrays.py
+echo "Running VIOLINPLOT test..."
+python3 ../tests/test_violinplot.py
+echo "Running HISTOGRAM test..."
+python3 ../tests/test_histogram.py

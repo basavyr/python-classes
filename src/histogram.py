@@ -5,18 +5,35 @@ import random as rd
 
 
 class Histogram:
-    @staticmethod
-    def makeHistogram(data, nbins, plt_label, filename):
+    def __init__(self, data_batch, nbins, filename, label, u_id):
+        self.label = label
+        self.filename = filename+'.pdf'
+        self.nbins = nbins
+        self.data_batch = data_batch
+        self.uid = u_id
+        # print( f'Class {Histogram.__name__} was initialized with the arguments: {self.label} | {self.data_batch} | {self.nbins}')
+
+    def _makeHistogram(self):
+        fig, ax = plt.subplots()
         plt.xlabel('x')
         plt.ylabel('P(x)')
         plt.title('The histogram for the normally distributed random data')
-        plt.hist(data, nbins, density=True, label=plt_label)
+        plt.text(0.05, 0.9, self.uid, {
+                 'color': 'b', 'fontsize': 7,'fontstyle': 'italic'}, transform=ax.transAxes)
+        count = 1
+        calpha = 1
+        for data in self.data_batch:
+            data_label = self.label+'-'+str(count)
+            plt.hist(data, self.nbins, density=True,
+                     label=data_label, alpha=calpha)
+            count = count+1
+            calpha = calpha-0.1
         plt.legend(loc='best')
-        plt.savefig(filename, bbox_inches='tight')
+        plt.savefig(self.filename, bbox_inches='tight')
         plt.close()
 
     @staticmethod
-    def makeBatchHistogram(data_batch, nbins, plt_label, filename):
+    def makeHistogram(data_batch, nbins, plt_label, filename):
         plt.xlabel('x')
         plt.ylabel('P(x)')
         plt.title('The histogram for the normally distributed random data')
