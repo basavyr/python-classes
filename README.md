@@ -1,3 +1,5 @@
+[![Build Status](https://robertpoenaru.visualstudio.com/test-pipelines/_apis/build/status/basavyr.python-classes?branchName=master)](https://robertpoenaru.visualstudio.com/test-pipelines/_build/latest?definitionId=3&branchName=master)
+
 # Python Classes 
 Implement Python classes that provide useful features within Numerical Programming and Data Visualization.
 
