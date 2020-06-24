@@ -4,7 +4,7 @@ pool:
 
 variables:
   imageName: 'python-classes'
-  dockerRepo: 'python-classes'
+  dockerRepo: 'python-plot-modules'
 
 steps:
 - task: Docker@2
@@ -16,9 +16,8 @@ steps:
 - task: Docker@2
   displayName: Push image
   inputs:
-    containerRegistry: $(dockerRepo)
-    repository: $(imageName)
+    containerRegistry: docker-azure-pipelines
+    repository: $(dockerRepo)
     command: push
     tags: |
       python
-      devops
