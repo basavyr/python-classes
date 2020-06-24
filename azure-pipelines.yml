@@ -19,5 +19,3 @@ steps:
     containerRegistry: docker-azure-pipelines
     repository: $(dockerRepo)
     command: push
-    tags: |
-      python
