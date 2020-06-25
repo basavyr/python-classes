@@ -32,7 +32,8 @@ class Logger:
         self.logfile.write('\n')
 
     def writeLog(self, log_data):
-        log_line = f'ID: {log_data[0]} UUID: {log_data[1]} GEN_TIME @{log_data[2]} OS: {os.system()} SYSTEM: {os.machine()} AARCH: {os.uname().processor}'
+        {sys.version_info.major}
+        log_line = f'ID: {log_data[0]} UUID: {log_data[1]} GEN_TIME @{log_data[2]} OS: {os.system()} SYSTEM: {os.machine()} AARCH: {os.uname().processor} PY_VER: {sys.version_info.major}.{sys.version_info.minor}'
         self.writeLine(log_line)
 
     def writeLogData(self, log_batch_data):
